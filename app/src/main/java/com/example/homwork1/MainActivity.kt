@@ -10,7 +10,7 @@ import kotlin.math.exp
 import kotlin.math.sqrt
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var meanVal: EditText // используем lateinit для инициализации позже
+    private lateinit var meanVal: EditText
     private lateinit var varianceValue: EditText
     private lateinit var randomNumberResult: TextView
     private var savedRandomNumber: String? = null
@@ -26,17 +26,16 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState != null) {
             savedRandomNumber = savedInstanceState.getString("randomNumber")
-            // Убедитесь, что savedRandomNumber не равен null
             randomNumberResult.text = savedRandomNumber ?: "Ничего не сгенерировано"
         }
 
         getRandomNum.setOnClickListener {
-            val mean = meanVal.text.toString().toDoubleOrNull() ?: 0.0 // безопасное преобразование
-            val variance = varianceValue.text.toString().toDoubleOrNull() ?: 0.0 // безопасное преобразование
+            val mean = meanVal.text.toString().toDoubleOrNull() ?: 0.0
+            val variance = varianceValue.text.toString().toDoubleOrNull() ?: 0.0
             val sigma = sqrt(variance)
             val randomNum = generateLogNormal(mean, sigma)
             randomNumberResult.text = randomNum.toString()
-            savedRandomNumber = randomNum.toString() // сохранить число
+            savedRandomNumber = randomNum.toString()
         }
     }
 

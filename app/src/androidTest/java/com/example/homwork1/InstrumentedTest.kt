@@ -36,29 +36,22 @@ import org.junit.runners.MethodSorters
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @LargeTest
 internal class InstrumentedTest {
-
     // add/remove seed
     private val random = Random()
     var lastNumber = 0.0
     var widgetFlag = false
-
     private val limit = 1_500
     private var mean = 0.0
     private var variance = 1.0
-
     private val meanDelta = 1e-1
     private val varianceDelta = 0.8
     private val skewnessDelta = 1.1
     private val kurtosisDelta = 3.1
-
     private var generatedNums = ArrayList<Double>(0)
-
     private var activityScenario: ActivityScenario<MainActivity>? = null
     private var handler: DescriptionFailureHandler? = null
-
     private lateinit var appContext: Context
     private lateinit var mInstrumentation: Instrumentation
-
     @Before
     fun setUp() {
         mInstrumentation = InstrumentationRegistry.getInstrumentation()
@@ -85,7 +78,6 @@ internal class InstrumentedTest {
         resultNumId = appContext.resources
             .getIdentifier("random_number_result", "id", appContext.opPackageName)
     }
-
     private fun checkInterface(ids: IntArray, message: String = "?") {
         var id = 1
         for (e in ids) {
@@ -97,7 +89,6 @@ internal class InstrumentedTest {
             Assert.assertNotEquals(0, id.toLong())
         }
     }
-
     @Test(timeout = MAX_TIMEOUT)
     fun distributionTest() {
         checkInterface(
@@ -107,7 +98,6 @@ internal class InstrumentedTest {
         )
         distributionCheckStep()
     }
-
     private fun distributionCheckStep() {
         class SearchScreen : Screen<SearchScreen>() {
             val meanView = KEditText { withId(meanId) }
@@ -115,7 +105,6 @@ internal class InstrumentedTest {
             val getNum = KButton { withId(getNumId) }
             val resultNum = KTextView { withId(resultNumId) }
         }
-
         val screen = SearchScreen()
         screen {
             meanView.clearText()
@@ -149,11 +138,6 @@ internal class InstrumentedTest {
     fun addGeneratedNumber(e: Double) {
         generatedNums.add(e)
     }
-
-    /**
-     * checks mean and std^2 for the whole sample
-     * mean and variance
-     */
     private fun checkLogNorm(a: ArrayList<Double>, m: Double, v: Double, sk: Double, kur: Double) {
         val d = a.toDoubleArray()
         val gm = StatUtils.mean(d)

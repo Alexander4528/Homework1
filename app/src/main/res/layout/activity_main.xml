@@ -9,7 +9,7 @@
         android:id="@+id/mean_val"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="Mean (μ)"/>
+        android:hint="Среднее (μ)"/>
 
     <EditText
         android:id="@+id/variance_value"
