@@ -47,5 +47,5 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation(libs.kakao)
+    androidTestImplementation("io.github.kakaocup:kakao:3.6.4")
 }
