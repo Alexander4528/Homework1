@@ -1,0 +1,17 @@
+autoCorrect: true
+build:
+  maxIssues: 0
+  threshold: 5
+  report:
+    active: true
+    format: XML
+    output: build/reports/detekt/detekt.xml
+
+rules:
+  naming:
+    MagicNumber:
+      active: false
+  complexity:
+    ComplexMethod:
+      active: true
+      threshold: 5

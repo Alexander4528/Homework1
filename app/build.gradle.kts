@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id ("io.gitlab.arturbosch.detekt") version "1.23.8"
 }
-
 android {
     namespace = "com.example.homwork1"
     compileSdk = 35
@@ -33,6 +33,11 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    detekt {
+        toolVersion = "1.23.8"
+        input = files("src/main/java")
+        config = files("detekt.yml")
+    }
 }
 
 dependencies {
@@ -45,7 +50,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation("io.github.kakaocup:kakao:3.6.4")
 }
